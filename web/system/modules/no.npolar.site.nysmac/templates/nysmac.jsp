@@ -248,7 +248,7 @@ if (canonical != null) {
 }
 %>
 <link rel="apple-touch-icon" sizes="57x57" href="<%= cms.link("/apple-icon-57x57.png") %>">
-<link rel="apple-touch-icon" sizes="60x60" href="<%= cms.link("/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="60x60" href="<%= cms.link("/apple-icon-60x60.png") %>">
 <link rel="apple-touch-icon" sizes="72x72" href="<%= cms.link("/apple-icon-72x72.png") %>">
 <link rel="apple-touch-icon" sizes="76x76" href="<%= cms.link("/apple-icon-76x76.png") %>">
 <link rel="apple-touch-icon" sizes="114x114" href="<%= cms.link("/apple-icon-114x114.png") %>">
@@ -262,7 +262,7 @@ if (canonical != null) {
 <link rel="icon" type="image/png" sizes="16x16" href="<%= cms.link("/favicon-16x16.png") %>">
 <link rel="manifest" href="<%= cms.link("/manifest.json") %>">
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="<%= cms.link("/ms-icon-144x144.png">
+<meta name="msapplication-TileImage" content="<%= cms.link("/ms-icon-144x144.png") %>">
 <meta name="theme-color" content="#ffffff">
 <%
 out.println(cms.getHeaderElement(CmsAgent.PROPERTY_CSS, requestFileUri));
