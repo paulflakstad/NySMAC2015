@@ -444,10 +444,7 @@ out.println(cms.getHeaderElement(CmsAgent.PROPERTY_HEAD_SNIPPET, requestFileUri)
             document.cookie = warningWasDisplayedCookie;
             $('body').append('<div class="hang-on" id="browserwarn" style="position:fixed; left:0; right:0; top:0; bottom:0; width:100%; height:100%; z-index:9999;">'
                                 + '<div class="warn" style="margin:20% auto; background: #fdd; padding:2em; text-align: center; border:1em solid red">'
-                                    + '<h2>This website works better with a modern browser</h2>'
-                                    + '<p>We recommend <a href="https://www.google.com/chrome/">Google Chrome</a> or <a href="https://www.mozilla.org/firefox">Firefox</a>.</p>'
-                                    + '<p>Continuing in your current browser will result in a sub-optimal experience, and usability errors may occur.</p>'
-                                    + '<a href="#" class="cta more" id="browserwarn-ok" style="float:none;">OK, I get it</a>'
+                                    + '<%= cms.getContent("/browserwarn.txt").replaceAll("\\'", "\\\\'").replace("\n", "").replace("\r", "") %>'
                                 + '</div>'
                             + '</div>');
             $('#browserwarn-ok').click( function() { $('#browserwarn').remove(); } );
