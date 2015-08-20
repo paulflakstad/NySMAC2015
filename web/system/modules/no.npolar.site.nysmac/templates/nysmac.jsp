@@ -204,8 +204,8 @@ final String LANGUAGE_SWITCH    = "/system/modules/no.npolar.common.lang/element
 //final String FOOTERLINKS        = "/system/modules/no.npolar.site.npweb/elements/footerlinks.jsp";
 //final String SEARCHBOX          = "/system/modules/no.npolar.site.npweb/elements/search.jsp";
 //final String LINKLIST           = "../../no.npolar.common.linklist/elements/linklist.jsp";
-final String HOME_URI           = cms.link("/" + locale + "/");
-final String SERP_URI		= cms.link("/" + locale + "/" + (locale.equalsIgnoreCase("no") ? "sok" : "search") + ".html");
+final String HOME_URI           = cms.link("/");
+final String SERP_URI		= cms.link("/search.html");
 final boolean EDITABLE_MENU     = true;
 
 String menuTemplate = null;
@@ -616,7 +616,7 @@ function layItOut() {
             submenu.children('ul').removeAttr('class').removeAttr('style'); // Do the same for all deeper levels
             $('#leftside').append('<nav id="subnavigation" role="navigation"><ul>' + submenu.html() + '</ul></nav>');
         }
-        $('#nav').removeClass('nav-colorscheme-dark');
+        //$('#nav').removeClass('nav-colorscheme-dark');
         
         $('#search-global').removeClass('not-visible');
         $('#search-global').removeAttr('style');
@@ -640,7 +640,7 @@ function layItOut() {
         });*/
     }
     else {
-        $('#nav').addClass('nav-colorscheme-dark');
+        //$('#nav').addClass('nav-colorscheme-dark');
         
         $('#subnavigation').remove(); // Remove the big screen submenu
         $('#search-global').hide(); // Prevent "search box collapse" animation on page load
