@@ -513,11 +513,96 @@ function readyHighslide(cssUri, jsUri) {
     }
     return true;
 }
+/**
+ * Formats bytes into more human-friendly form.
+ * 
+ * @see http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
+ * @param {int} bytes The number of bytes.
+ * @param {int} decimals The number of decimals.
+ * @returns {String} The human friendly form.
+ */
+function formatBytes(bytes, decimals) {
+    if (bytes === 0) 
+        return '0 Byte';
+    var k = 1000;
+    var dm = decimals + 1 || 3;
+    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    var i = Math.floor(Math.log(bytes) / Math.log(k));
+    return (bytes / Math.pow(k, i)).toPrecision(dm) + ' ' + sizes[i];
+}
 
+//success: function(/*Anything*/data, /*String*/textStatus, /*jqXHR*/jqXHR)
+/**
+ * Tries to append file size to all links to files of the given type.
+ * 
+ * @param {String} fileType The file type, e.g. "PDF"
+ * @returns {Boolean} True if there were no error(s), false if not.
+ */
+function appendFileSizeToFileLinks(fileType) {
+    if (typeof fileType !== 'string') {
+        console.log('ERROR [appendFileSizeToFileLinks]: File type must be a string.');
+        return false;
+    }
+    var error = false;
+    $('a[href$=".'+fileType.toLowerCase()+'"]').each(function() {
+        try {
+            var fileUri = $(this).attr('href');
+            var $el = $(this);
+            var data = {
+                type: "HEAD",
+                url: fileUri
+                ,element: $el
+            };
+            var xhr = $.ajax(data);
+            
+            xhr.done(function(){
+               var bytes = parseInt(xhr.getResponseHeader('Content-Length'));
+               //alert( bytes + ' bytes' );
+               appendFileSizeToFileLink(data.element, bytes, fileType.toUpperCase());
+            });
+        } catch (err) {
+            console.log('ERROR [appendFileSizeToFileLinks]: Unable to get size of file "' + data.url + '".');
+            error = true;
+        }
+    });
+    return !error;
+}
+/**
+ * Tries to append file size to the link referenced by the given jQuery element.
+ * 
+ * @param {jQuery} $link The jQuery element for a single link.
+ * @param {int} sizeInBytes The size of the file, in bytes.
+ * @param {String} fileType The file type, e.g. "PDF".
+ * @returns {Boolean} True if the size was successfully appended, false if not.
+ */
+function appendFileSizeToFileLink(/*jQuery*/$link, /*int*/sizeInBytes, /*String*/fileType) {
+    try {
+        $link.html( $link.text() + ' (' + fileType + ' ' + formatBytes(sizeInBytes, 1) + ')' );
+    } catch (err) {
+        console.log('ERROR [appendFileSizeToFileLink]: Unable to set size (' + sizeInBytes + ') on ' + fileType + ' link. Link element was ' + $link);
+        return false;
+    }
+    return true;
+}
+/*
+function appendSizeToFileLink(linkHref, sizeInBytes, fileType) { // String, int, String
+    try {
+        var $link = $('a[href="'+linkHref+'"]');
+        $link.html( $link.text() + ' (' + fileType + ' ' + formatBytes(sizeInBytes, 1) + ')' );
+    } catch (err) {
+        console.log('Unable to set size (' + sizeInBytes + ') on ' + fileType + ' link. Link element was ' + $link);
+    }
+}
+*/
 /**
  * Things to do when the document is ready
  */
 $(document).ready( function() {
+        // Move h1 and breadcrumb into description
+        $('#page-summary').prepend($('h1'));
+        $('#page-summary').prepend($('#nav_breadcrumb_wrap'));
+        // PDF file sizes
+        appendFileSizeToFileLinks("pdf");
 	// responsive tables
         makeResponsiveTables();
         // tabbed content (enhancement - works with pure css but not optimal)
