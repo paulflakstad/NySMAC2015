@@ -38,7 +38,7 @@
     final String LABEL_NO_HITS = loc.equalsIgnoreCase("no") ? "Ingen treff" : "No hits";
     final String LABEL_ZERO = loc.equalsIgnoreCase("no") ? "Ingen" : "No";
     
-    final String DEFAULT_INDEX_NAME = "MOSJ_" + loc + "_online"; // E.g. "MOSJ_no_online"
+    final String DEFAULT_INDEX_NAME = "NySMAC_" + (cms.getRequestContext().getCurrentProject().isOnlineProject() ? "online" : "offline"); // E.g. "NySMAC_online" or "NySMAC_offline"
     
     // Get the query
     String query = cms.getRequest().getParameter("query");
@@ -155,6 +155,9 @@
         while (iterator.hasNext()) {
             CmsSearchResult entry = (CmsSearchResult)iterator.next();
             String entryPath = cms.link(cms.getRequestContext().removeSiteRoot(entry.getPath()));
+            if (entryPath.endsWith("index.html")) {
+                entryPath = entryPath.substring(0, entryPath.length() - "index.html".length());
+            }
             %>
             
                 <h3 class="searchHitTitle" style="padding:1em 0 0.2em 0; font-weight:bold;">
