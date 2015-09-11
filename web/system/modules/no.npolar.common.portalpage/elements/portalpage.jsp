@@ -214,7 +214,7 @@ while (container.hasMoreContent()) {
     
     if (CmsAgent.elementExists(pageIntro) && !pageIntroAsOverlay) {
         try { pageIntro = cnr.resolve(pageIntro); } catch (Exception e) {}
-        out.println("<section class=\"descr\">" + pageIntro + "</section>");
+        out.println("<section id=\"page-summary\" class=\"descr\">" + pageIntro + "</section>");
     }
     
     
