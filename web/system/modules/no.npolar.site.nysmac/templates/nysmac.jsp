@@ -71,9 +71,9 @@ try {
     out.println("<!-- Content notation resolver error: " + e.getMessage() + " -->");
 }
 
-homePage = requestFileUri.equals("/" + loc + "/") 
-            || requestFileUri.equals("/" + loc + "/index.html")
-            || requestFileUri.equals("/" + loc + "/index.jsp");
+homePage = requestFileUri.equals("/") 
+            || requestFileUri.equals("/index.html")
+            || requestFileUri.equals("/index.jsp");
 
 
 
