@@ -528,7 +528,8 @@ function formatBytes(bytes, decimals) {
     var dm = decimals + 1 || 3;
     var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     var i = Math.floor(Math.log(bytes) / Math.log(k));
-    return (bytes / Math.pow(k, i)).toPrecision(dm) + ' ' + sizes[i];
+    //return (bytes / Math.pow(k, i)).toPrecision(dm) + ' ' + sizes[i];
+    return (bytes / Math.pow(k, i)).toFixed(decimals) + ' ' + sizes[i];
 }
 
 //success: function(/*Anything*/data, /*String*/textStatus, /*jqXHR*/jqXHR)
@@ -577,6 +578,7 @@ function appendFileSizeToFileLinks(fileType) {
  */
 function appendFileSizeToFileLink(/*jQuery*/$link, /*int*/sizeInBytes, /*String*/fileType) {
     try {
+        //$link.html( $link.text() + ' (' + fileType + ' ' + formatBytes(sizeInBytes, 3) + ')' );
         $link.html( $link.text() + ' (' + fileType + ' ' + formatBytes(sizeInBytes, 1) + ')' );
     } catch (err) {
         console.log('ERROR [appendFileSizeToFileLink]: Unable to set size (' + sizeInBytes + ') on ' + fileType + ' link. Link element was ' + $link);
@@ -603,6 +605,8 @@ $(document).ready( function() {
         $('#page-summary').prepend($('#nav_breadcrumb_wrap'));
         // PDF file sizes
         appendFileSizeToFileLinks("pdf");
+        // ZIP file sizes
+        appendFileSizeToFileLinks("zip");
 	// responsive tables
         makeResponsiveTables();
         // tabbed content (enhancement - works with pure css but not optimal)
