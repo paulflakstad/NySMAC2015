@@ -424,6 +424,8 @@ a.nav-toggler {
     color:#adf;
     color:#8cf;
 }
+#nav > ul > li > a:focus, 
+#nav > ul > li > a:hover, 
 #nav > ul > li.inpath > a:hover,
 #nav > ul > li.inpath.infocus > a {
     background-color:#fff;
