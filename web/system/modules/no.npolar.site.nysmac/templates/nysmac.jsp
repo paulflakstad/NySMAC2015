@@ -412,7 +412,8 @@ out.println(cms.getHeaderElement(CmsAgent.PROPERTY_HEAD_SNIPPET, requestFileUri)
         <div id="footer-content">
             <div class="clearfix double layout-group">
                 <div class="clearfix boxes">
-                    <p><%= cms.labelUnicode("label.nysmac.global.foot") %></p>
+                    <%= cms.getContent("/footer.txt") %>
+                    <p><a class="logo-link" href="http://www.npolar.no/en/"><img src="<%= cms.link("../resources/style/logo-npi.png") %>" alt="Norwegian Polar Institute" /></a></p>
                 </div>
             </div>
         </div>
