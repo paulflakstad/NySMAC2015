@@ -606,7 +606,7 @@ $(document).ready( function() {
         // PDF file sizes
         appendFileSizeToFileLinks("pdf");
         // ZIP file sizes
-        appendFileSizeToFileLinks("zip");
+        //appendFileSizeToFileLinks("zip");
 	// responsive tables
         makeResponsiveTables();
         // tabbed content (enhancement - works with pure css but not optimal)
