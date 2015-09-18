@@ -225,7 +225,7 @@ cms.editable(false);
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=0.5,user-scalable=yes" />
 <% 
 // Print all alternate languages (including current language) for this page
-cms.include("/system/modules/no.npolar.common.lang/elements/alternate-languages.jsp"); 
+//cms.include("/system/modules/no.npolar.common.lang/elements/alternate-languages.jsp"); 
 if (canonical != null) 
     out.println("<link rel=\"canonical\" href=\"" + canonical + "\" />");
 %>
@@ -269,11 +269,11 @@ out.println(cms.getHeaderElement(CmsAgent.PROPERTY_CSS, requestFileUri));
 out.println(cms.getHeaderElement(CmsAgent.PROPERTY_HEAD_SNIPPET, requestFileUri));
 %>
 <!--<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Old+Standard+TT:400,700,400italic|Vollkorn:400,700,400italic,700italic|Arvo:400,700italic,400italic,700" />-->
-<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/navigation" + (loggedInUser ? "" : ".min") + ".css") %>" />
-<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/base" + (loggedInUser ? "" : ".min") + ".css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/navigation.css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/base.css") %>" />
 <!--<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/base" + (loggedInUser ? "" : ".opt") + ".css") %>" />-->
-<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/smallscreens" + (loggedInUser ? "" : ".min") + ".css") %>" media="(min-width:310px)" />
-<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/largescreens" + (loggedInUser ? "" : ".min") + ".css") %>" media="(min-width:801px)" />
+<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/smallscreens.css") %>" media="(min-width:310px)" />
+<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/largescreens.css") %>" media="(min-width:801px)" />
 <!--<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/nav-off-canvas.css") %>" />-->
 <link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/print.css") %>" media="print" />
 <!--<link rel="stylesheet" type="text/css" href="<%= cms.link("/system/modules/no.npolar.common.jquery/resources/qtip2/2.1.1/jquery.qtip.min.css") %>" />-->
@@ -675,8 +675,13 @@ document.getElementsByTagName('a').onfocus = function(e) {
 </script>
 <% if (!loggedInUser) { %>
 <script type="text/javascript">
-    // GA goes here
-//(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+// Analytics
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-9146177-19', 'auto');
+ga('send', 'pageview');
 </script>
 <% } %>
 </body>
