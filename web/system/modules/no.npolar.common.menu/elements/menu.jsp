@@ -59,7 +59,7 @@ public List<MenuItem> getBreadCrumbItems(Menu menu, CmsAgent cms, String resourc
     String loc = locale.toString();
     
     // The "home" URI - fetched from property, defaults to the locale folder if no property value is found
-    final String HOME_URI = cms.link(cms.property("home-file", "search", "/".concat(loc).concat("/")));
+    final String HOME_URI = cms.property("home-file", "search", "/".concat(loc).concat("/"));
     // Find the current request file URI, modify to remove "index.html" if needed
     if (resourceUri.endsWith("/index.html"))
         resourceUri = resourceUri.substring(0, resourceUri.lastIndexOf("index.html"));
