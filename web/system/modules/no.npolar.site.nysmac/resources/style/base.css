@@ -165,7 +165,7 @@ span.textbox {
 }
 
 html {
-    background-color:#0e131f;
+    background-color:#fff;
     min-width:196px;
     max-width:100%;
     overflow-x:hidden;
@@ -187,9 +187,10 @@ body {
     overflow-x:hidden;
     position:relative;
     width:100%;
+    height:100%;
 }
 #top {
-    background-color:#234;
+    background-color:#eee;
 }
 /*#mainwrap,*/
 #header,
@@ -221,10 +222,12 @@ body {
     /*color:#888;*/
     /*color:#444;*/
     /*color:#b9d2df;*/
-    color:#adf;
+    /*color:#adf;*/
+    color:#006db6;
 }
 #header a:hover {
     color:#fff;
+    color:#117ec7;
 }
 #header-mid {
     text-align:right;
@@ -266,6 +269,19 @@ body {
 #footer ul li {
     margin:0;
     padding:0;
+}
+#footer .logo-link {
+    display:inline-block;
+    background-color:#666;
+    border-radius:3px;
+    padding:3px;
+    -webkit-transition:background-color 0.3s;
+    -moz-transition:background-color 0.3s;
+    -o-transition:background-color 0.3s;
+    transition:background-color 0.3s;
+}
+#footer .logo-link:hover {
+    background-color:#fff;
 }
 
 a {
@@ -394,7 +410,7 @@ h6 {
     /*color: #000;*/
     margin-bottom: 2em;
     max-width: 100%;
-    padding: 2em 0;
+    padding:0.5em 0 2em 0;
     
     /*color:#adf;*/
     font-weight:lighter;
@@ -402,6 +418,14 @@ h6 {
     
     background-color:#fff;
     color:#444;
+    text-align:center;
+}
+
+.descr h1 {
+    background:transparent;
+    color:#000;
+    line-height:1em;
+    padding:0.4em 0;
 }
 
 /* Hero image */
@@ -452,14 +476,15 @@ h6 {
     /*font-weight: 200;*/
     font-family:"Open sans","Arial",sans-serif;
     margin: 2em 0 0.4em;
-    padding: 0.5em;
+    padding: 0.5em 0;
 	
     /*background-color:#eaf1f5;
     border-left:0.5em solid #3d667b;*/
 
-    background-color:#f5f5f5;
+    /*background-color:#f5f5f5;
     background-color:rgba(0,0,0,0.04);
-    border-left:0.5em solid #8b0000;
+    border-left:0.5em solid #8b0000;*/
+    font-weight:bold;
 }
 /* Main headings and sub-headings in running text */
 .paragraph > h2,
@@ -602,6 +627,7 @@ ul.line-items li {
 /* Accordion */
 .toggleable {
     max-width:100%;
+    border:1px solid #abc;
 }
 .toggletrigger,
 .toggletarget {
@@ -616,6 +642,8 @@ ul.line-items li {
     display:block;
     color:#1570B1;
     transition:all .5s;
+    font-weight:bold;
+    padding:1.4em;
 }
 .toggletrigger:hover {
     background:#eee;
@@ -989,10 +1017,15 @@ h1 .scientific-name {
     display:block;	
     background:none;
     border-bottom:1px solid #ddd;
-    text-shadow:1px 1px 2px #ccc;
-    font-size:1.4em;
-    font-size:1rem;
+    text-shadow:none;
+    font-size:large;
     font-weight:normal;
+}
+
+.paragraph .textbox ul,
+.paragraph .textbox ol,
+.paragraph .textbox dl {
+    margin-left:1.5em;
 }
 
 .paragraph .textbox p, 
@@ -1091,9 +1124,10 @@ h1 .scientific-name {
 
 /* Breadcrumbs */
 #nav_breadcrumb_wrap {
-    background-color:#111;
+    /*background-color:#111;*/
     overflow:auto;
     border:none;
+    font-size:smaller;
 }
 #nav_breadcrumb {
     /*list-style-image:none;
@@ -1105,6 +1139,7 @@ h1 .scientific-name {
     /*margin:0;
     margin-bottom:0.6em;*/
     font-size:0.8em;
+    font-size:smaller;
     /*width:99%;*/
     /*padding:0 0.5%;*/
     
@@ -1113,20 +1148,22 @@ h1 .scientific-name {
 }
 #nav_breadcrumb li {
     display:inline-block;
-    float:left; /* Absolutely neccessary for IE8 to behave */
+    /*float:left;*/ /* Absolutely neccessary for IE8 to behave */
 }
 #nav_breadcrumb li:last-child {
     display:none;
 }
 #nav_breadcrumb/*,
 a.breadcrumb*/ {
-    color:#fff;
+    /*color:#fff;*/
+    color:#007db6;
     line-height:2em;
     font-weight:bold;
 }
 #nav_breadcrumb a,
 #nav_breadcrumb a:hover {
-    color:#adf;
+    /*color:#adf;*/
+    color:#007db6;
     font-weight:normal;
 }
 #nav_breadcrumb a:hover {
@@ -1170,8 +1207,10 @@ a.breadcrumb*/ {
     text-align:left;
     display: inline-block;
     float: left;
-    margin-top:1.25em;
-    margin-bottom:1.25em;
+    /*margin-top:1.25em;
+    margin-bottom:1.25em;*/
+    margin-top:0.5rem;
+    margin-bottom:0.5rem;
     text-decoration:none;
 }
 #identity img {
@@ -1207,7 +1246,7 @@ a.breadcrumb*/ {
     display:inline-block;
     font-size:0.5rem;
     padding-left:0.25rem;
-    color:#b9d2df;
+    color:#007db6;
 }
 #identity-tagline {
     display:none;
@@ -1218,16 +1257,14 @@ a.breadcrumb*/ {
 .pull-left { float:left; margin-left:0; }
 
 /* images / videos / random media */
-.media {
-    font-size:0.8em;
-    color:#777;
+.media,
+.paragraph .media {
+    font-size:smaller;
+    color:#333;
     margin:0 0 1em 0;
     width:100%;
     position:relative;
-    background-color:#f5f5f5;
-}
-.parameter-wrapper .media {
-    background-color:#fff;
+    background-color:transparent;
 }
 
 .media .video-wrapper {
@@ -1316,8 +1353,8 @@ img.highslide-image {
 .caption.highslide-caption {
     display:block;
     margin:0;
-    font-size:1em;
-    padding:1em 1% 0 1%;
+    /*font-size:1em;*/
+    padding:1%;
 }
 .gallerythumb {
     background:transparent;
@@ -1597,19 +1634,24 @@ h4.news-title {
 }
 #search-global input[type="search"], 
 #search-global .query-input {
-    background-color:#fafafa;
+    background-color:#fff;
+    color:#000;
+    /*border:1px solid #118ec7;*/
+    border:none;
 }
 #search-global input[type="search"]:focus, 
 #search-global .query-input:focus {
     background-color:#fff;
-    border:none;
+    /*border:none;*/
     box-shadow:0 0 5px rgba(170, 221, 255, 1);
     color:#000;
     outline:none;
 } 
 #search-global input[type="button"], 
 #search-global .search-button {
-    background-color:#adf;
+    /*background-color:#adf;*/
+    background-color:#007DB6;
+    color:#fff;
 }
 /*
 #search-global #query {
@@ -1661,10 +1703,10 @@ h4.news-title {
     cursor:pointer;
 }
 */
-#homepage #search-global,
+/*#homepage #search-global,
 #homepage #toggle-search {
     display:none !important;
-}
+}*/
 
 
 
@@ -1757,6 +1799,7 @@ h4.news-title {
     width:100%;
     padding-bottom:1em;
     background-color:#fff;
+    min-height:50%;
     /*margin-top:-2.5rem;*/ /* = height of breadcrumb */
 }
 aside h4 {
@@ -2089,7 +2132,7 @@ nav .pageNumWrap {
     display: inline-block;
     font-size: 1.2em;
     line-height: 1.2em;
-    padding: 0.5em;
+    padding:1em;
     text-align: center;
     text-decoration: none;
     transition: background-color 0.3s ease 0s;
@@ -2108,11 +2151,16 @@ nav .pageNumWrap {
 /*a*/.cta.alt:hover {
     background-color:#01acf9;
 }
-/*a*/.cta.alt.download {
-    background-color:#08d;
+/*a*/
+.cta.download,
+.cta.alt.download {
+    /*background-color:#08d;*/
+    background-color:#006DB6;
     font-size:1em;
 }
-/*a*/.cta.alt.download:before {
+/*a*/
+.cta.download:before,
+.cta.alt.download:before {
     content:"\E818";
     font-family:"Fontello";
     padding-right:0.2em;
