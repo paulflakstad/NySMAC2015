@@ -548,19 +548,21 @@ function appendFileSizeToFileLinks(fileType) {
     $('a[href$=".'+fileType.toLowerCase()+'"]').each(function() {
         try {
             var fileUri = $(this).attr('href');
-            var $el = $(this);
-            var data = {
-                type: "HEAD",
-                url: fileUri
-                ,element: $el
-            };
-            var xhr = $.ajax(data);
-            
-            xhr.done(function(){
-               var bytes = parseInt(xhr.getResponseHeader('Content-Length'));
-               //alert( bytes + ' bytes' );
-               appendFileSizeToFileLink(data.element, bytes, fileType.toUpperCase());
-            });
+            if (fileUri.indexOf('/events/meeting/') !== 0) {
+                var $el = $(this);
+                var data = {
+                    type: "HEAD",
+                    url: fileUri
+                    ,element: $el
+                };
+                var xhr = $.ajax(data);
+
+                xhr.done(function(){
+                   var bytes = parseInt(xhr.getResponseHeader('Content-Length'));
+                   //alert( bytes + ' bytes' );
+                   appendFileSizeToFileLink(data.element, bytes, fileType.toUpperCase());
+                });
+            }
         } catch (err) {
             console.log('ERROR [appendFileSizeToFileLinks]: Unable to get size of file "' + data.url + '".');
             error = true;
@@ -606,7 +608,7 @@ $(document).ready( function() {
         // PDF file sizes
         appendFileSizeToFileLinks("pdf");
         // ZIP file sizes
-        //appendFileSizeToFileLinks("zip");
+        appendFileSizeToFileLinks("zip");
 	// responsive tables
         makeResponsiveTables();
         // tabbed content (enhancement - works with pure css but not optimal)
