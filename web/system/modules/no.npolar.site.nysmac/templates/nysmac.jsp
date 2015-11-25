@@ -43,6 +43,18 @@ if (!loggedInUser && cms.getRequest().isSecure()) {
     CmsRequestUtil.redirectPermanently(cms, redirAbsPath);
 }
 
+// Redirect from workplace domain to regular domain if user ain't logged-in.
+final String WORKPLACE_SUBDOMAIN = "cms.";
+if (!loggedInUser && request.getServerName().startsWith(WORKPLACE_SUBDOMAIN)) {
+    String redirAbsPath = "http://" + request.getServerName().substring(WORKPLACE_SUBDOMAIN.length()) + cms.link(requestFileUri);
+    String qs = cms.getRequest().getQueryString();
+    if (qs != null && !qs.isEmpty()) {
+        redirAbsPath += "?" + qs;
+    }
+    //out.println("<!-- redirect path is '" + redirAbsPath + "' -->");
+    CmsRequestUtil.redirectPermanently(cms, redirAbsPath);
+}
+
 Locale loc                  = cms.getRequestContext().getLocale();
 String locale               = loc.toString();
 String description          = CmsStringUtil.escapeHtml(CmsHtmlExtractor.extractText(cms.property("Description", requestFileUri, ""), "utf-8"));
