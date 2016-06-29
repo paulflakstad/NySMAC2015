@@ -554,6 +554,39 @@ section {
     overflow:auto;
 }
 
+/*******************************************************************************
+ * Message boxes
+ */
+.msg {
+    background-color: #f5f5f5;
+    background-color: rgba(0,100,200, 0.1);
+    font-size: smaller;
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid rgba(0,100,200,0.2);
+    box-shadow: 0.2em 0.2em 0.5em rgba(0,0,0,0.5);
+}
+.msg, 
+.msg__heading {
+    color: #333;
+    color: rgba(0,0,0,0.9);
+}
+.msg__heading {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 0.2em solid rgba(0,0,0,0.1);
+}
+.msg.msg--warn {
+    background-color: rgba(255,100,100,0.3);
+    border-color: rgba(200,50,50,0.5);
+}
+.msg.msg--alert {
+    background-color: rgba(255, 247, 183, 0.7);
+    border-color: rgba(216, 162, 69, 0.5);
+}
+
 .hidden {
     font-size:1px;
     height:1px;
