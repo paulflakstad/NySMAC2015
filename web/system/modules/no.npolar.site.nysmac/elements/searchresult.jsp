@@ -3,7 +3,8 @@
     Created on : May 5, 2015, 10:26:13 AM
     Author     : Paul-Inge Flakstad, Norwegian Polar Institute <flakstad at npolar.no>
 --%><%@ page buffer="none" 
-             import="org.opencms.main.*, 
+             import="no.npolar.util.CmsAgent,
+             org.opencms.main.*, 
              org.opencms.search.*, 
              org.opencms.search.fields.*, 
              org.opencms.file.*, 
@@ -13,7 +14,7 @@
 %><%@ taglib prefix="cms" uri="http://www.opencms.org/taglib/cms"%>
 <%    
     // Create a JSP action element
-    CmsJspActionElement cms = new CmsJspActionElement(pageContext, request, response);
+    CmsAgent cms = new CmsAgent(pageContext, request, response);
     
     
     // is a target page URI explicitly set?
@@ -21,7 +22,8 @@
     if (targetPageUri != null && !targetPageUri.trim().isEmpty()) {
         // ait, let's do the redirect
         String redirAbsPath = request.getScheme() + "://" + request.getServerName() + targetPageUri;
-        CmsRequestUtil.redirectPermanently(cms, redirAbsPath);
+        //CmsRequestUtil.redirectPermanently(cms, redirAbsPath); // Flawed, issues 302
+        cms.sendRedirect(redirAbsPath, HttpServletResponse.SC_MOVED_PERMANENTLY);
         return;
     }
     

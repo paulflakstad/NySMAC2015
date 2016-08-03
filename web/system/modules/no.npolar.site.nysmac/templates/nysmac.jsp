@@ -40,7 +40,8 @@ if (!loggedInUser && cms.getRequest().isSecure()) {
         redirAbsPath += "?" + qs;
     }
     //out.println("<!-- redirect path is '" + redirAbsPath + "' -->");
-    CmsRequestUtil.redirectPermanently(cms, redirAbsPath);
+    //CmsRequestUtil.redirectPermanently(cms, redirAbsPath); // Flawed, issues 302
+    cms.sendRedirect(redirAbsPath, HttpServletResponse.SC_MOVED_PERMANENTLY);
 }
 
 // Redirect from workplace domain to regular domain if user ain't logged-in.
@@ -52,7 +53,8 @@ if (!loggedInUser && request.getServerName().startsWith(WORKPLACE_SUBDOMAIN)) {
         redirAbsPath += "?" + qs;
     }
     //out.println("<!-- redirect path is '" + redirAbsPath + "' -->");
-    CmsRequestUtil.redirectPermanently(cms, redirAbsPath);
+    //CmsRequestUtil.redirectPermanently(cms, redirAbsPath); // Flawed, issues 302
+    cms.sendRedirect(redirAbsPath, HttpServletResponse.SC_MOVED_PERMANENTLY);
 }
 
 Locale loc                  = cms.getRequestContext().getLocale();
