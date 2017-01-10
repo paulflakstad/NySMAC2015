@@ -1025,6 +1025,7 @@ h1 .scientific-name {
 .paragraph ol, 
 .paragraph dd {
     margin-left:4em;
+    margin-bottom:1em;
 }
 .paragraph li {
     display:list-item;
