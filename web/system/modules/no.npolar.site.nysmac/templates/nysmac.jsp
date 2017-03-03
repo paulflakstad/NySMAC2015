@@ -492,6 +492,11 @@ $(document).ready(function() {
     // Prepare Highslide (if necessary)
     readyHighslide('<%= cms.link("/system/modules/no.npolar.common.highslide/resources/js/highslide/highslide.min.css") %>', 
                     '<%= cms.link("/system/modules/no.npolar.common.highslide/resources/js/highslide/highslide.js") %>');
+                    
+    // renderCharts(...) is in commons.js
+    // At time of writing this, charts are used for visualizing frequency ranges
+    // in use in the Ny-Ålesund area
+    renderCharts('<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/js/highcharts-combined.js") %>');
     
     if (bigScreen) {
         //$('.svg #identity > img').attr('src', '<%= cms.link("/system/modules/no.npolar.site.nysmac/resources/style/logo-nysmac.svg") %>');

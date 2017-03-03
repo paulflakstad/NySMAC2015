@@ -873,3 +873,95 @@ try {
 } catch (err) {
 	// Highslide probably undefined
 }
+
+/*******************************************************************************
+ * Highcharts charts
+ */
+var charts = new Array();
+
+/**
+ * Adds a chart to the container element with the given ID.
+ * <p>
+ * This method only handles storage. Rendering is handled by renderCharts().
+ * 
+ * @param {String} targetId The ID of the charts container element.
+ * @param {Object} config The chart configuration object.
+ * @returns {undefined}
+ */
+function addChart(targetId, config) {
+    charts.push({
+        target: targetId,
+        conf: config
+    });
+}
+
+/**
+ * Renders all charts that have been added using addChart(...).
+ * <p>
+ * If no charts have been added, Highcharts will not be loaded.
+ * 
+ * @returns {undefined}
+ */
+function renderCharts() {
+    if (charts.length > 0) {
+        //console.log("Loading Highcharts assets...");
+        $.getScript('//code.highcharts.com/highcharts.js', function() {
+            $.getScript('//code.highcharts.com/highcharts-more.js', function() {
+                $.getScript('//code.highcharts.com/modules/exporting.js', function() {
+                    //console.log("Rendering charts...");
+                    for (var i = 0; i < charts.length; i++) {
+                        Highcharts.chart(charts[i].target, charts[i].conf);
+                    }
+                });
+            });
+        });
+    } else {
+        //console.log("No charts added. Highcharts assets not loaded.");
+    }
+}
+
+/**
+ * Renders all charts that have been added using addChart(...).
+ * <p>
+ * If no charts have been added, Highcharts will not be loaded.
+ * 
+ * @param {String} highchartsJsUri The URI to the Highcharts script.
+ * @returns {undefined}
+ */
+function renderCharts(highchartsJsUri) {
+    if (charts.length > 0) {
+        console.log("Loading Highcharts js from " + highchartsJsUri + "...");
+        $.getScript(highchartsJsUri, function() {
+            //console.log("Rendering charts...");
+            for (var i = 0; i < charts.length; i++) {
+                Highcharts.chart(charts[i].target, charts[i].conf);
+            }
+        });
+    } else {
+        //console.log("No charts added. Highcharts assets not loaded.");
+    }
+}
+    
+/**
+ * Converts a numeric frequency to human-friendly form.
+ * <p>
+ * Used in chart configurations.
+ * 
+ * @param {Number} val The numeric frequency, e.g. 10000000.
+ * @returns {Number|String} The human-friendly form, e.g. "10 MHz".
+ */
+function toHumanFreq(/*int*/ numericFreq) {
+    var u = 'Hz';
+    var v = numericFreq;
+    if (v >= 9999999999) {
+        v = v / 1000000000;
+        u = 'GHz';
+    } else if (v >= 9999999) {
+        v = v / 1000000;
+        u = 'MHz';
+    } else if (v >= 9999) {
+        v = v / 1000;
+        u = 'kHz';
+    }
+    return v + u;
+}
